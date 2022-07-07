@@ -47,7 +47,7 @@ $(function() {
             }
 
             // -- Receive Data from Host -- //
-            $("#utterance").html("Current time: " + msg['msg']);
+            $("#utterance").html("Load message: " + msg['msg']);
         });
     } catch (e) {
         $("#utterance").html("Get Failed with exception " + e);

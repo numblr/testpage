@@ -40,14 +40,14 @@ $(function() {
     scale_canvas(WIDTH, HEIGHT);
 
     try {
-        $.get("http://worldtimeapi.org/api/timezone/Europe/London.json", function (msg, status) {
+        $.get("./datajson", function (msg, status) {
             if (status !== 200 && status !== "success") {
                 $("#utterance").html("Get Failed with status " + status);
                 return;
             }
 
             // -- Receive Data from Host -- //
-            $("#utterance").html("Current time: " + msg['datetime']);
+            $("#utterance").html("Current time: " + msg['msg']);
         });
     } catch (e) {
         $("#utterance").html("Get Failed with exception " + e);

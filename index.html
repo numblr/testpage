@@ -57,7 +57,7 @@ $(function() {
     
     var cnt = 0;
     var load_img = function() {
-        $("#image").src("0eef80b5-6106-4d6e-af7b-88f0f836dde8.png?" + cnt);
+        $("#image").attr("src", "0eef80b5-6106-4d6e-af7b-88f0f836dde8.png?" + cnt);
     };
     
     setInterval(load_img, 1000);

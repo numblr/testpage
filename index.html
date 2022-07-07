@@ -12,7 +12,7 @@
 </head>
 <body>
     
-<img src="0eef80b5-6106-4d6e-af7b-88f0f836dde8.png">
+<img id="image" src="0eef80b5-6106-4d6e-af7b-88f0f836dde8.png">
 
 <div id="container">
     <div id="camera"></div>
@@ -54,6 +54,13 @@ $(function() {
     } catch (e) {
         $("#utterance").html("Get Failed with exception " + e);
     }
+    
+    var cnt = 0;
+    var load_img = function() {
+        $("#utterance").src("0eef80b5-6106-4d6e-af7b-88f0f836dde8.png?" + cnt);
+    };
+    
+    setInterval(load_img, 1000);
 });
 
 

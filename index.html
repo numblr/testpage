@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pepper Web View</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body { margin: 0; padding: 10px; height: 100%; }
+        #container { min-width:100%; min-height:100%; position:absolute; text-align: center}
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="camera"></div>
+    <div id="utterance"></div>
+</div>
+
+<script>
+
+// Global Variables //
+WIDTH = 4; HEIGHT = 3;
+
+FONT_SIZE = 30;
+
+function scale_canvas(w, h) {
+    $("#camera").html("Canvas scale is called with " + w + " - " + h);
+}
+
+// Main Logic //
+
+$(window).resize(function() {
+    scale_canvas(WIDTH, HEIGHT);
+});
+
+
+$(function() {
+    // Scale Canvas on Start
+    scale_canvas(WIDTH, HEIGHT);
+
+    try {
+        $.get("http://worldtimeapi.org/api/timezone/Europe/London.json", function (msg, status) {
+            if (status !== 200 && status !== "success") {
+                $("#utterance").html("Get Failed with status " + status);
+                return;
+            }
+
+            // -- Receive Data from Host -- //
+            $("#utterance").html("Current time: " + msg['datetime']);
+        });
+    } catch (e) {
+        $("#utterance").html("Get Failed with exception " + e);
+    }
+});
+
+
+</script>
+</body>
+</html>

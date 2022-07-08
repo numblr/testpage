@@ -58,6 +58,19 @@ $(function() {
     var cnt = 0;
     var load_img = function() {
         cnt += 1;
+        try {
+            $.get("data.json", function (msg, status) {
+                if (status !== 200 && status !== "success") {
+                    $("#utterance").html("Get Failed with status " + status);
+                    return;
+                }
+
+                // -- Receive Data from Host -- //
+                $("#utterance").html("Load message (" + cnt + "): " + msg['msg']);
+            });
+        } catch (e) {
+            $("#utterance").html("Get Failed with exception " + e);
+        }
         $("#image").attr("src", "0eef80b5-6106-4d6e-af7b-88f0f836dde8.png?" + cnt);
     };
     
